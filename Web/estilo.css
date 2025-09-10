@@ -1,0 +1,1441 @@
+/* ==========================================================================
+   1. VARIABLES Y ESTILOS GLOBALES MODERNOS
+   ========================================================================== */
+
+:root {
+    /* Colores principales */
+    --color-primario: #004E89;
+    --color-primario-hover: #003a6b;
+    --color-blanco: #FFFFFF;
+    --color-acento: #1CB5B2;
+    --color-acento-hover: #18a29f;
+    --color-fondo-secundario: #A6E1FA;
+    --color-detalle: #B6E388;
+    --color-detalle-hover: #a5d177;
+    --color-texto: #333333;
+    --color-texto-claro: #666666;
+    --color-gris-claro: #f8f9fa;
+    --color-borde: #e9ecef;
+    
+    /* Gradientes modernos */
+    --gradiente-primario: linear-gradient(135deg, var(--color-primario) 0%, var(--color-acento) 100%);
+    --gradiente-hero: linear-gradient(135deg, rgba(0,78,137,0.9) 0%, rgba(28,181,178,0.8) 100%);
+    --gradiente-card: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+    
+    /* Sombras modernas */
+    --sombra-sutil: 0 2px 10px rgba(0, 0, 0, 0.08);
+    --sombra-media: 0 4px 20px rgba(0, 0, 0, 0.12);
+    --sombra-fuerte: 0 8px 30px rgba(0, 0, 0, 0.15);
+    --sombra-hover: 0 12px 40px rgba(0, 0, 0, 0.2);
+    
+    /* Tipografía */
+    --fuente-principal: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --fuente-titulo: 'Poppins', var(--fuente-principal);
+    
+    /* Espaciado */
+    --espaciado-xs: 0.5rem;
+    --espaciado-sm: 1rem;
+    --espaciado-md: 2rem;
+    --espaciado-lg: 3rem;
+    --espaciado-xl: 4rem;
+    
+    /* Transiciones */
+    --transicion-rapida: all 0.2s ease-out;
+    --transicion-normal: all 0.3s ease-out;
+    --transicion-lenta: all 0.5s ease-out;
+    --transicion-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Border radius moderno */
+    --radio-pequeno: 8px;
+    --radio-medio: 12px;
+    --radio-grande: 16px;
+    --radio-xl: 24px;
+}
+
+/* Import de fuentes modernas */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Reset mejorado */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-blanco);
+    color: var(--color-texto);
+    line-height: 1.6;
+    font-weight: 400;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Elementos de fondo animados */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(28,181,178,0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0,78,137,0.03) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(182,227,136,0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Skip link para accesibilidad */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color-primario);
+    color: var(--color-blanco);
+    padding: 8px;
+    text-decoration: none;
+    border-radius: var(--radio-pequeno);
+    z-index: 9999;
+    transition: var(--transicion-rapida);
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+/* ==========================================================================
+   2. HEADER MODERNO CON EFECTOS
+   ========================================================================== */
+
+header {
+    background: rgba(0, 78, 137, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--color-blanco);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--sombra-sutil);
+    transition: var(--transicion-normal);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header que se encoge al hacer scroll */
+.header-scrolled {
+    padding: 0.5rem 2rem;
+    background: rgba(0, 78, 137, 0.98);
+    box-shadow: var(--sombra-media);
+}
+
+.header-scrolled .logo img {
+    height: 40px;
+}
+
+header .logo {
+    position: relative;
+    overflow: hidden;
+}
+
+header .logo img {
+    height: 50px;
+    transition: var(--transicion-normal);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+header .logo img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.main-nav a {
+    color: var(--color-blanco);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: var(--transicion-rapida);
+    font-size: 0.95rem;
+}
+
+.main-nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-acento), var(--color-detalle));
+    transition: var(--transicion-bounce);
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.main-nav a:hover::before,
+.main-nav a[aria-current="page"]::before {
+    width: 100%;
+}
+
+.main-nav a:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   3. BOTONES MODERNOS CON MICRO-INTERACCIONES
+   ========================================================================== */
+
+.button {
+    padding: 0.75rem 1.75rem;
+    text-decoration: none;
+    border-radius: var(--radio-medio);
+    font-weight: 600;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    transition: var(--transicion-bounce);
+    position: relative;
+    overflow: hidden;
+    font-family: var(--fuente-principal);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: var(--sombra-sutil);
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: var(--transicion-lenta);
+}
+
+.button:hover::before {
+    left: 100%;
+}
+
+.button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--sombra-hover);
+}
+
+.button:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* Botón CTA del header */
+.cta-button {
+    background: var(--gradiente-primario);
+    color: var(--color-blanco);
+    border-radius: var(--radio-xl);
+    padding: 0.75rem 2rem;
+    box-shadow: var(--sombra-media);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.cta-button:hover {
+    background: linear-gradient(135deg, var(--color-acento) 0%, var(--color-detalle) 100%);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.button-primary {
+    background: var(--gradiente-primario);
+    color: var(--color-blanco);
+    border: 2px solid transparent;
+}
+
+.button-primary:hover {
+    background: var(--color-primario-hover);
+    border-color: var(--color-acento);
+}
+
+.button-secondary {
+    background: var(--color-blanco);
+    color: var(--color-primario);
+    border: 2px solid var(--color-primario);
+}
+
+.button-secondary:hover {
+    background: var(--color-primario);
+    color: var(--color-blanco);
+    border-color: var(--color-primario);
+}
+
+.button-accent {
+    background: var(--gradiente-card);
+    color: var(--color-primario);
+    border: 2px solid var(--color-detalle);
+    box-shadow: var(--sombra-sutil);
+}
+
+.button-accent:hover {
+    background: var(--color-detalle);
+    color: var(--color-primario);
+    border-color: var(--color-detalle-hover);
+}
+
+/* ==========================================================================
+   4. CARRUSEL HERO MODERNO Y CINEMATOGRÁFICO
+   ========================================================================== */
+
+.carousel-hero {
+    position: relative;
+    height: 70vh;
+    min-height: 600px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 0 0 var(--radio-grande) var(--radio-grande);
+    box-shadow: var(--sombra-fuerte);
+}
+
+.carousel-track-container {
+    height: 100%;
+    position: relative;
+}
+
+.carousel-track {
+    list-style: none;
+    position: relative;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    transform: scale(1.1);
+}
+
+.carousel-slide.current-slide {
+    opacity: 1;
+    z-index: 1;
+    transform: scale(1);
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8) contrast(1.1) saturate(1.2);
+    transition: var(--transicion-lenta);
+}
+
+.carousel-slide.current-slide .carousel-image {
+    filter: brightness(0.9) contrast(1.1) saturate(1.2);
+}
+
+/* Overlay con gradiente */
+.carousel-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradiente-hero);
+    z-index: 2;
+}
+
+/* Contenido del slide */
+.carousel-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--color-blanco);
+    z-index: 3;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.carousel-content h1,
+.carousel-content h2 {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInUp 1s ease-out 0.3s forwards;
+}
+
+.carousel-content p {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInUp 1s ease-out 0.6s forwards;
+}
+
+.carousel-cta-container {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInUp 1s ease-out 0.9s forwards;
+}
+
+/* Animaciones */
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Botones de navegación */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 4;
+    transition: var(--transicion-bounce);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primario);
+    box-shadow: var(--sombra-media);
+    backdrop-filter: blur(10px);
+}
+
+.carousel-btn-prev {
+    left: 2rem;
+}
+
+.carousel-btn-next {
+    right: 2rem;
+}
+
+.carousel-btn:hover {
+    background: var(--color-blanco);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: var(--sombra-fuerte);
+}
+
+/* Indicadores modernos */
+.carousel-nav {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    gap: 1rem;
+}
+
+.carousel-indicator {
+    border: none;
+    border-radius: var(--radio-pequeno);
+    width: 50px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: var(--transicion-bounce);
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-indicator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--color-blanco);
+    transition: var(--transicion-lenta);
+}
+
+.carousel-indicator.current-slide::before {
+    left: 0;
+}
+
+.carousel-indicator:hover {
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   5. SECCIONES CON ANIMACIONES AL SCROLL
+   ========================================================================== */
+
+.page-section {
+    padding: var(--espaciado-xl) var(--espaciado-md);
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: var(--transicion-lenta);
+}
+
+.page-section.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    text-align: center;
+    font-family: var(--fuente-titulo);
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-primario);
+    margin-bottom: var(--espaciado-xl);
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: var(--transicion-lenta);
+}
+
+.section-title.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--gradiente-primario);
+    margin: 1rem auto 0;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transition: transform 0.8s ease-out 0.3s;
+}
+
+.section-title.animate-in::after {
+    transform: scaleX(1);
+}
+
+/* Cards de servicio modernas */
+.service-item {
+    margin-bottom: var(--espaciado-xl);
+    padding: var(--espaciado-lg);
+    border-radius: var(--radio-grande);
+    background: var(--gradiente-card);
+    box-shadow: var(--sombra-sutil);
+    border: 1px solid var(--color-borde);
+    transition: var(--transicion-bounce);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.service-item.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.service-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: var(--gradiente-primario);
+    transition: var(--transicion-lenta);
+}
+
+.service-item:hover::before {
+    left: 0;
+}
+
+.service-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-hover);
+    border-color: rgba(28, 181, 178, 0.2);
+}
+
+.service-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.service-title {
+    font-family: var(--fuente-titulo);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-primario);
+    margin-bottom: var(--espaciado-md);
+    text-align: center;
+    position: relative;
+}
+
+.service-banner {
+    margin-bottom: var(--espaciado-md);
+    border-radius: var(--radio-medio);
+    overflow: hidden;
+    box-shadow: var(--sombra-sutil);
+}
+
+.service-content {
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-lg);
+}
+
+.service-item:nth-child(even) .service-content {
+    flex-direction: row-reverse;
+}
+
+.service-info,
+.service-image-column {
+    width: 50%;
+}
+
+.service-info p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-texto-claro);
+    margin-bottom: var(--espaciado-md);
+}
+
+/* Contenedor de imagen mejorado */
+.image-background {
+    background: var(--gradiente-card);
+    padding: var(--espaciado-sm);
+    border-radius: var(--radio-medio);
+    box-shadow: var(--sombra-sutil);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transicion-bounce);
+}
+
+.image-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(28,181,178,0.1), rgba(182,227,136,0.1));
+    opacity: 0;
+    transition: var(--transicion-normal);
+}
+
+.image-background:hover::before {
+    opacity: 1;
+}
+
+.image-background:hover {
+    transform: scale(1.02);
+    box-shadow: var(--sombra-media);
+}
+
+.image-background img {
+    border-radius: var(--radio-pequeno);
+    transition: var(--transicion-normal);
+    filter: contrast(1.1) saturate(1.1);
+}
+
+/* ==========================================================================
+   6. SECCIÓN DE TESTIMONIOS (NUEVA)
+   ========================================================================== */
+
+.testimonials-section {
+    background: var(--gradiente-card);
+    border-radius: var(--radio-grande);
+    padding: var(--espaciado-xl);
+    margin: var(--espaciado-xl) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(28,181,178,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(182,227,136,0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--espaciado-lg);
+    margin-top: var(--espaciado-lg);
+}
+
+.testimonial {
+    background: var(--color-blanco);
+    padding: var(--espaciado-lg);
+    border-radius: var(--radio-medio);
+    box-shadow: var(--sombra-sutil);
+    border-left: 4px solid var(--color-acento);
+    transition: var(--transicion-bounce);
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.testimonial.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.testimonial:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-media);
+    border-left-color: var(--color-detalle);
+}
+
+.testimonial::before {
+    content: '"';
+    font-size: 4rem;
+    color: var(--color-acento);
+    position: absolute;
+    top: -10px;
+    left: var(--espaciado-md);
+    font-family: serif;
+    opacity: 0.3;
+}
+
+.testimonial p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-texto);
+    margin-bottom: var(--espaciado-md);
+    font-style: italic;
+}
+
+.testimonial cite {
+    font-weight: 600;
+    color: var(--color-primario);
+    font-style: normal;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   7. FOOTER MODERNO
+   ========================================================================== */
+
+footer {
+    background: linear-gradient(135deg, var(--color-primario) 0%, #003366 100%);
+    color: var(--color-blanco);
+    padding: var(--espaciado-xl) var(--espaciado-md) var(--espaciado-md);
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 40%, rgba(28,181,178,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(182,227,136,0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--espaciado-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-block {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: var(--transicion-lenta);
+}
+
+.footer-block.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.footer-block h4 {
+    font-family: var(--fuente-titulo);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: var(--espaciado-md);
+    border-bottom: 2px solid var(--color-acento);
+    padding-bottom: var(--espaciado-xs);
+    position: relative;
+}
+
+.footer-block h4::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: var(--color-detalle);
+}
+
+.footer-block ul {
+    list-style: none;
+}
+
+.footer-block ul li {
+    margin-bottom: var(--espaciado-xs);
+    transition: var(--transicion-rapida);
+}
+
+.footer-block ul li:hover {
+    transform: translateX(5px);
+}
+
+.footer-block a {
+    color: var(--color-blanco);
+    text-decoration: none;
+    opacity: 0.9;
+    transition: var(--transicion-rapida);
+    position: relative;
+}
+
+.footer-block a:hover {
+    opacity: 1;
+    color: var(--color-acento);
+    text-decoration: underline;
+}
+
+/* Redes sociales mejoradas */
+.social-links {
+    display: flex;
+    gap: var(--espaciado-md);
+    margin-top: var(--espaciado-md);
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: var(--transicion-bounce);
+    backdrop-filter: blur(10px);
+}
+
+.social-links a:hover {
+    background: var(--color-acento);
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(28, 181, 178, 0.4);
+}
+
+.social-links a svg {
+    fill: var(--color-blanco);
+    transition: var(--transicion-rapida);
+}
+
+.social-links a:hover svg {
+    fill: var(--color-blanco);
+    transform: scale(1.2);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: var(--espaciado-xl);
+    padding-top: var(--espaciado-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   8. DISEÑO RESPONSIVE MODERNO
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .carousel-hero {
+        height: 60vh;
+        min-height: 500px;
+    }
+    
+    .carousel-content {
+        max-width: 600px;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --espaciado-xl: 3rem;
+        --espaciado-lg: 2rem;
+        --espaciado-md: 1.5rem;
+    }
+    
+    header {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .carousel-hero {
+        height: 50vh;
+        min-height: 400px;
+        border-radius: 0;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-btn-prev {
+        left: 1rem;
+    }
+    
+    .carousel-btn-next {
+        right: 1rem;
+    }
+    
+    .service-content {
+        flex-direction: column !important;
+        gap: var(--espaciado-md);
+    }
+    
+    .service-info,
+    .service-image-column {
+        width: 100%;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: var(--espaciado-md);
+    }
+    
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: var(--espaciado-md);
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 640px) {
+    :root {
+        --espaciado-xl: 2.5rem;
+        --espaciado-lg: 1.5rem;
+        --espaciado-md: 1rem;
+    }
+    
+    header {
+        padding: 0.75rem 1rem;
+    }
+    
+    header .logo img {
+        height: 40px;
+    }
+    
+    .main-nav ul {
+        gap: 0.75rem;
+    }
+    
+    .main-nav a {
+        font-size: 0.85rem;
+        padding: 0.25rem 0;
+    }
+    
+    .carousel-hero {
+        height: 45vh;
+        min-height: 350px;
+    }
+    
+    .carousel-content {
+        padding: 1rem;
+    }
+    
+    .carousel-content h1,
+    .carousel-content h2 {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+        margin-bottom: 0.75rem;
+    }
+    
+    .carousel-content p {
+        font-size: clamp(0.95rem, 3vw, 1.1rem);
+        margin-bottom: 1.5rem;
+    }
+    
+    .button {
+        padding: 0.6rem 1.25rem;
+        font-size: 0.8rem;
+    }
+    
+    .cta-button {
+        padding: 0.6rem 1.5rem;
+    }
+    
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .carousel-btn-prev {
+        left: 0.5rem;
+    }
+    
+    .carousel-btn-next {
+        right: 0.5rem;
+    }
+    
+    .carousel-nav {
+        bottom: 1rem;
+    }
+    
+    .carousel-indicator {
+        width: 30px;
+        height: 3px;
+    }
+    
+    .page-section {
+        padding: var(--espaciado-lg) 1rem;
+    }
+    
+    .section-title {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+        margin-bottom: var(--espaciado-lg);
+    }
+    
+    .service-item {
+        padding: var(--espaciado-md);
+        margin-bottom: var(--espaciado-lg);
+    }
+    
+    .service-title {
+        font-size: 1.5rem;
+        margin-bottom: var(--espaciado-sm);
+    }
+    
+    .service-info p {
+        font-size: 1rem;
+    }
+    
+    .testimonials-section {
+        padding: var(--espaciado-lg) 1rem;
+    }
+    
+    .testimonial {
+        padding: var(--espaciado-md);
+    }
+    
+    .testimonial::before {
+        font-size: 3rem;
+        left: var(--espaciado-sm);
+    }
+    
+    footer {
+        padding: var(--espaciado-lg) 1rem var(--espaciado-md);
+    }
+    
+    .footer-block h4 {
+        font-size: 1.1rem;
+        margin-bottom: var(--espaciado-sm);
+    }
+    
+    .social-links a {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --espaciado-xl: 2rem;
+        --espaciado-lg: 1.25rem;
+        --espaciado-md: 0.75rem;
+        --espaciado-sm: 0.5rem;
+    }
+    
+    header {
+        padding: 0.5rem 0.75rem;
+    }
+    
+    header .logo img {
+        height: 35px;
+    }
+    
+    .cta-button {
+        display: none; /* Ocultar en pantallas muy pequeñas */
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+    
+    .main-nav a {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+    
+    .carousel-hero {
+        height: 40vh;
+        min-height: 300px;
+        border-radius: 0;
+    }
+    
+    .carousel-content {
+        padding: 0.75rem;
+        max-width: 90%;
+    }
+    
+    .carousel-content h1,
+    .carousel-content h2 {
+        font-size: clamp(1.5rem, 7vw, 2rem);
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+    }
+    
+    .carousel-content p {
+        font-size: clamp(0.85rem, 4vw, 1rem);
+        margin-bottom: 1rem;
+        line-height: 1.4;
+    }
+    
+    .button {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        border-radius: var(--radio-pequeno);
+    }
+    
+    .carousel-btn {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .carousel-indicator {
+        width: 25px;
+        height: 2.5px;
+    }
+    
+    .page-section {
+        padding: var(--espaciado-md) 0.75rem;
+    }
+    
+    .section-title {
+        font-size: clamp(1.75rem, 9vw, 2.25rem);
+        margin-bottom: var(--espaciado-md);
+    }
+    
+    .section-title::after {
+        width: 60px;
+        height: 3px;
+    }
+    
+    .service-item {
+        padding: var(--espaciado-sm);
+        margin-bottom: var(--espaciado-md);
+        border-radius: var(--radio-medio);
+    }
+    
+    .service-title {
+        font-size: 1.3rem;
+    }
+    
+    .service-content {
+        gap: var(--espaciado-sm);
+    }
+    
+    .service-banner {
+        margin-bottom: var(--espaciado-sm);
+    }
+    
+    .image-background {
+        padding: var(--espaciado-xs);
+        border-radius: var(--radio-pequeno);
+    }
+    
+    .testimonials-section {
+        padding: var(--espaciado-md) 0.75rem;
+        margin: var(--espaciado-md) 0;
+    }
+    
+    .testimonials-grid {
+        gap: var(--espaciado-sm);
+    }
+    
+    .testimonial {
+        padding: var(--espaciado-sm);
+    }
+    
+    .testimonial::before {
+        font-size: 2.5rem;
+        top: -5px;
+        left: var(--espaciado-xs);
+    }
+    
+    .testimonial p {
+        font-size: 1rem;
+        margin-bottom: var(--espaciado-sm);
+    }
+    
+    .testimonial cite {
+        font-size: 0.8rem;
+    }
+    
+    footer {
+        padding: var(--espaciado-md) 0.75rem var(--espaciado-sm);
+    }
+    
+    .footer-container {
+        gap: var(--espaciado-sm);
+    }
+    
+    .footer-block h4 {
+        font-size: 1rem;
+        margin-bottom: var(--espaciado-xs);
+    }
+    
+    .footer-block ul li {
+        margin-bottom: 0.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .social-links {
+        gap: var(--espaciado-sm);
+        margin-top: var(--espaciado-sm);
+    }
+    
+    .social-links a {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .copyright {
+        margin-top: var(--espaciado-md);
+        padding-top: var(--espaciado-sm);
+        font-size: 0.8rem;
+    }
+}
+
+/* ==========================================================================
+   9. ANIMACIONES AL SCROLL Y MICRO-INTERACCIONES
+   ========================================================================== */
+
+/* Animación suave para elementos que aparecen al hacer scroll */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Clases para JavaScript de scroll animations */
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fade-in-left {
+    animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.fade-in-right {
+    animation: fadeInRight 0.8s ease-out forwards;
+}
+
+/* Efectos de hover adicionales */
+.service-item:hover .service-title {
+    color: var(--color-acento);
+    transition: var(--transicion-normal);
+}
+
+.service-item:hover .image-background img {
+    transform: scale(1.05);
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--color-acento);
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   10. OPTIMIZACIONES DE RENDIMIENTO
+   ========================================================================== */
+
+/* GPU acceleration para animaciones suaves */
+.carousel-slide,
+.carousel-image,
+.button,
+.service-item,
+.image-background {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Reducir animaciones en dispositivos con preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .carousel-slide {
+        transition: opacity 0.3s ease-in-out;
+    }
+    
+    body::before {
+        display: none;
+    }
+}
+
+/* Optimización para pantallas de alta densidad */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+    .carousel-image {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* ==========================================================================
+   11. UTILIDADES Y CLASES AUXILIARES
+   ========================================================================== */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.opacity-1 {
+    opacity: 1;
+}
