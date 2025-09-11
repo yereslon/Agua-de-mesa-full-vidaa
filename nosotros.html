@@ -6,10 +6,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
   <title>Nosotros | FULL VIDA</title>
-  <meta name="description" content="Conoce la historia, misión y equipo de FULL VIDA, productores de agua de mesa purificada en Sullana, Piura." />
+  <meta name="description" content="Conoce a FULL VIDA: nuestra historia, misión, visión y valores. Más de 10 años produciendo agua de mesa purificada en Sullana, Piura, con procesos certificados." />
   <link rel="canonical" href="https://www.fullvida.com/nosotros.html" />
 
-  <!-- Fuentes -->
+  <!-- Open Graph / Twitter -->
+  <meta property="og:site_name" content="FULL VIDA" />
+  <meta property="og:title" content="Nosotros | FULL VIDA" />
+  <meta property="og:description" content="Historia, misión, visión y valores de FULL VIDA. Calidad certificada en cada gota." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.fullvida.com/nosotros.html" />
+  <meta property="og:image" content="https://www.fullvida.com/media/images/nosotros/og-equipo.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fuentes (puedes mantener Open Sans o las del resto del sitio) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -18,16 +27,38 @@
   <link rel="stylesheet" href="estilo.css" />
   <link rel="stylesheet" href="header-footer.css" />
 
-  <!-- Favicons (opcionalmente iguales que en index) -->
+  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="./media/favicon/favicon-32x32.png" />
   <meta name="theme-color" content="#004E89" />
+
+  <!-- Schema.org: Breadcrumb + AboutPage -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.fullvida.com/"},
+      {"@type":"ListItem","position":2,"name":"Nosotros","item":"https://www.fullvida.com/nosotros.html"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"AboutPage",
+    "name":"Nosotros | FULL VIDA",
+    "url":"https://www.fullvida.com/nosotros.html",
+    "description":"Historia, misión, visión y valores de FULL VIDA, empresa de agua purificada en Sullana, Piura.",
+    "primaryImageOfPage":"https://www.fullvida.com/media/images/nosotros/og-equipo.jpg"
+  }
+  </script>
 </head>
 
 <body>
-  <!-- El script añade el skip-link si no existe, pero lo dejamos por accesibilidad -->
+  <!-- Skip link -->
   <a href="#main-content" class="skip-link">Saltar al contenido</a>
 
-  <!-- HEADER (igual al de index) -->
+  <!-- HEADER (igual que en index) -->
   <header role="banner">
     <div class="logo">
       <a href="index.html" aria-label="FULL VIDA - Inicio">
@@ -38,7 +69,7 @@
     <nav class="main-nav" role="navigation" aria-label="Navegación principal">
       <ul>
         <li><a href="index.html">Inicio</a></li>
-        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="nosotros.html" aria-current="page">Nosotros</a></li>
         <li><a href="productos.html">Productos</a></li>
         <li><a href="maquila.html">Servicio de Maquila</a></li>
         <li><a href="empresas.html">Abastecimiento a Empresas</a></li>
@@ -49,16 +80,125 @@
     <a href="contacto.html" class="button cta-button">Cotizar Ahora</a>
   </header>
 
-  <!-- CONTENIDO DE LA PÁGINA -->
+  <!-- CONTENIDO -->
   <main id="main-content" role="main">
+    <!-- Migas de pan accesibles -->
+    <nav aria-label="Breadcrumb" class="page-section" style="padding-top:1rem;">
+      <ol style="list-style:none;display:flex;gap:.5rem;flex-wrap:wrap;">
+        <li><a href="index.html">Inicio</a></li>
+        <li aria-hidden="true">›</li>
+        <li><span aria-current="page">Nosotros</span></li>
+      </ol>
+    </nav>
+
     <section class="page-section" aria-labelledby="nosotros-title">
       <h1 class="section-title" id="nosotros-title">Sobre FULL VIDA</h1>
-      <p>Tu contenido aquí…</p>
-      <!-- Usa tus mismas clases .service-item, .image-background, etc. -->
+
+      <!-- Quiénes somos -->
+      <article class="service-item" aria-labelledby="qs-title">
+        <div class="service-content">
+          <div class="service-info">
+            <h2 class="service-title" id="qs-title">Quiénes somos</h2>
+            <p>Somos una empresa peruana con sede en Sullana (Piura), dedicada a la producción y distribución de agua de mesa purificada para hogares y empresas. Desde hace más de 10 años, trabajamos con procesos estandarizados y controles por lote para garantizar una entrega puntual y una calidad constante.</p>
+            <div class="mt-auto" style="margin-top:1rem;">
+              <a href="calidad.html" class="button button-primary">Ver certificaciones</a>
+              <a href="procesos.html" class="button button-accent" style="margin-left:.5rem;">Conocer el proceso</a>
+            </div>
+          </div>
+          <div class="service-image-column">
+            <div class="image-background">
+              <img src="./media/images/nosotros/planta-01.jpg" alt="Planta de purificación de FULL VIDA en Sullana" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Misión y Visión -->
+      <article class="service-item" aria-labelledby="mv-title">
+        <div class="service-content">
+          <div class="service-info">
+            <h2 class="service-title" id="mv-title">Misión y Visión</h2>
+            <p><strong>Misión:</strong> Llevar agua purificada segura y confiable a hogares y empresas, cumpliendo la normativa vigente y ofreciendo un servicio cercano.</p>
+            <p><strong>Visión:</strong> Ser la marca regional referente en calidad, sostenibilidad y confianza en el agua purificada.</p>
+          </div>
+          <div class="service-image-column">
+            <div class="image-background">
+              <img src="./media/images/nosotros/equipo-01.jpg" alt="Equipo de trabajo de FULL VIDA" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Valores -->
+      <article class="service-item" aria-labelledby="valores-title">
+        <h2 class="service-title" id="valores-title">Nuestros valores</h2>
+        <div class="service-content">
+          <div class="service-info">
+            <ul>
+              <li><strong>Calidad:</strong> procesos estandarizados y control por lote en cada producción.</li>
+              <li><strong>Cumplimiento:</strong> entregas puntuales con rutas programadas.</li>
+              <li><strong>Cercanía:</strong> atención rápida por WhatsApp y soporte post-venta.</li>
+              <li><strong>Transparencia:</strong> certificaciones y análisis disponibles.</li>
+              <li><strong>Sostenibilidad:</strong> uso responsable de recursos y mejora continua.</li>
+            </ul>
+          </div>
+          <div class="service-image-column">
+            <div class="image-background">
+              <img src="./media/images/nosotros/valores-01.jpg" alt="Valores de calidad y servicio en FULL VIDA" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Historia breve -->
+      <article class="service-item" aria-labelledby="historia-title">
+        <h2 class="service-title" id="historia-title">Nuestra historia</h2>
+        <div class="service-content">
+          <div class="service-info">
+            <ul>
+              <li><strong>2015:</strong> Inicio de operaciones en Sullana con distribución local.</li>
+              <li><strong>2019:</strong> Ampliación de capacidad y rutas; atención a empresas.</li>
+              <li><strong>2023–2025:</strong> Servicio de maquila para marcas propias y mejoras en trazabilidad.</li>
+            </ul>
+          </div>
+          <div class="service-image-column">
+            <div class="image-background">
+              <img src="./media/images/nosotros/hitos-01.jpg" alt="Línea de tiempo de crecimiento de FULL VIDA" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Testimonios (opcional si ya los usas en home) -->
+    <section class="testimonials-section" aria-labelledby="testimonios-title">
+      <h2 class="section-title" id="testimonios-title">Lo que dicen nuestros clientes</h2>
+      <div class="testimonials-grid">
+        <blockquote class="testimonial">
+          <p>"Calidad constante y entregas puntuales. Nuestro equipo está satisfecho con el servicio."</p>
+          <cite>— Gerente de Operaciones, Empresa de Servicios</cite>
+        </blockquote>
+        <blockquote class="testimonial">
+          <p>"Implementar nuestra marca propia fue sencillo gracias a su soporte y trazabilidad."</p>
+          <cite>— Director, Marca Regional</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="page-section" aria-labelledby="cta-final-title">
+      <article class="service-item" style="text-align:center;">
+        <h2 class="service-title" id="cta-final-title">¿Listo para cotizar?</h2>
+        <p>Te asesoramos según tus necesidades: hogar, empresa o maquila.</p>
+        <div style="margin-top:1rem;">
+          <a href="contacto.html" class="button button-primary">Contactar</a>
+          <a href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20con%20FULL%20VIDA" class="button button-accent" style="margin-left:.5rem;">WhatsApp</a>
+        </div>
+      </article>
     </section>
   </main>
 
-  <!-- FOOTER (igual al de index) -->
+  <!-- FOOTER -->
   <footer role="contentinfo">
     <div class="footer-container">
       <div class="footer-block">
@@ -75,7 +215,7 @@
         <h4>Navegación</h4>
         <ul>
           <li><a href="index.html">Inicio</a></li>
-          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="nosotros.html" aria-current="page">Nosotros</a></li>
           <li><a href="productos.html">Productos</a></li>
           <li><a href="maquila.html">Servicio de Maquila</a></li>
           <li><a href="empresas.html">Abastecimiento a Empresas</a></li>
@@ -89,7 +229,7 @@
         <address>
           <ul>
             <li><strong>Dirección:</strong> Calle 7 #737, Sullana, Piura, Perú</li>
-            <li><strong>Teléfono:</strong> <a href="tel:+51(073) 553856">+51 (073) 553856</a></li>
+            <li><strong>Teléfono:</strong> <a href="tel:+51073553856">+51 (073) 553856</a></li>
             <li><strong>WhatsApp:</strong> <a href="https://wa.me/51968323653">+51 968 323 653</a></li>
             <li><strong>Correo:</strong> <a href="mailto:fullvidaytu@gmail.com">fullvidaytu@gmail.com</a></li>
             <li><strong>Horario:</strong> Lun-Sáb 8:00-18:00, Dom 8:00-13:00</li>
@@ -99,17 +239,14 @@
         <ul class="social-links">
           <li>
             <a href="https://facebook.com/fullvidaperu" target="_blank" rel="noopener" aria-label="Síguenos en Facebook">
-              <!-- tu SVG -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" role="img" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"/></svg>
             </a>
           </li>
           <li>
             <a href="https://instagram.com/fullvidaperu" target="_blank" rel="noopener" aria-label="Síguenos en Instagram">
-              <!-- tu SVG -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.644-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm6.406-1.683c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" role="img" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.644-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm6.406-1.683c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"/></svg>
             </a>
           </li>
-          <!-- TikTok, etc. -->
         </ul>
       </div>
     </div>
@@ -118,10 +255,9 @@
     </div>
   </footer>
 
-  <!-- JS (orden) -->
+  <!-- JS (sin carrusel en esta página) -->
   <script src="header-footer.js"></script>
   <script src="scroll-animations.js"></script>
   <script src="whatsapp-widget.js"></script>
-  <!-- NO incluir carousel.js aquí a menos que tengas carrusel en esta página -->
 </body>
 </html>
