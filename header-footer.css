@@ -1,0 +1,267 @@
+/* ==========================================================================
+   HEADER & FOOTER (Soporte a header-footer.js) — header-footer.css
+   * Usa las variables ya definidas en estilo.css (color, radios, etc.)
+   ========================================================================== */
+
+/* Estructura base del header (suave al ocultar/mostrar con scroll) */
+header {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Contenedor interno que crea el JS si no existe */
+.header-container {
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo (respeta estilos de estilo.css; aquí solo garantías mínimas) */
+.logo img {
+  height: 45px;
+  width: auto;
+  transition: var(--transicion-normal, all .3s ease-out);
+}
+
+/* ==========================================================================
+   MENÚ HAMBURGUESA
+   ========================================================================== */
+
+.menu-toggle {
+  display: none; /* se muestra en @media */
+  width: 40px; height: 40px;
+  background: none; border: 0; cursor: pointer; padding: 0;
+  align-items: center; justify-content: center;
+  position: relative; z-index: 1001;
+}
+
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--color-acento, #1CB5B2);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.hamburger {
+  width: 24px; height: 2px;
+  background: var(--color-blanco, #fff);
+  position: relative;
+  transition: var(--transicion-normal, all .3s ease-out);
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 24px; height: 2px;
+  background: var(--color-blanco, #fff);
+  transition: var(--transicion-normal, all .3s ease-out);
+}
+
+.hamburger::before { top: -7px; }
+.hamburger::after  { top:  7px; }
+
+/* Estado activo (X) */
+.menu-toggle.active .hamburger { background: transparent; }
+.menu-toggle.active .hamburger::before { transform: rotate(45deg) translate(5px, 5px); }
+.menu-toggle.active .hamburger::after  { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* ==========================================================================
+   OVERLAY MÓVIL
+   ========================================================================== */
+
+.mobile-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.8);
+  backdrop-filter: blur(5px);
+  opacity: 0; visibility: hidden;
+  transition: var(--transicion-normal, all .3s ease-out);
+  z-index: 999;
+  display: none; /* se habilita en @media */
+}
+
+.mobile-overlay.active {
+  opacity: 1; visibility: visible;
+}
+
+/* ==========================================================================
+   NAVEGACIÓN MÓVIL DESLIZABLE
+   ========================================================================== */
+
+.mobile-nav {
+  position: fixed; top: 0; right: -100%;
+  width: 300px; max-width: 88vw; height: 100vh;
+  background: linear-gradient(135deg, var(--color-primario, #004E89) 0%, #003366 100%);
+  padding: 90px 0 40px;
+  transition: right .4s cubic-bezier(.175, .885, .32, 1.275);
+  z-index: 1000;
+  overflow-y: auto;
+  box-shadow: -5px 0 20px rgba(0,0,0,.25);
+  display: none; /* se habilita en @media */
+}
+
+.mobile-nav.active { right: 0; }
+
+.mobile-nav ul { list-style: none; margin: 0; padding: 0; }
+.mobile-nav li { border-bottom: 1px solid rgba(255,255,255,.12); }
+
+.mobile-nav a {
+  display: block;
+  padding: 1rem 1.75rem;
+  color: var(--color-blanco, #fff);
+  text-decoration: none;
+  font-weight: 500; font-size: 1.05rem;
+  position: relative;
+  transition: var(--transicion-normal, all .3s ease-out);
+}
+
+.mobile-nav a:hover,
+.mobile-nav a[aria-current="page"] {
+  background: rgba(28, 181, 178, .18);
+  color: #B6E388;
+  transform: translateX(8px);
+}
+
+.mobile-nav a::before {
+  content: "";
+  position: absolute; left: 0; top: 0;
+  width: 4px; height: 100%;
+  background: var(--color-acento, #1CB5B2);
+  transform: scaleY(0);
+  transition: transform .25s ease;
+}
+
+.mobile-nav a:hover::before,
+.mobile-nav a[aria-current="page"]::before {
+  transform: scaleY(1);
+}
+
+.mobile-cta {
+  margin: 1.5rem;
+  text-align: center;
+}
+.mobile-cta .cta-button {
+  display: block; width: fit-content; margin: 0 auto;
+}
+
+/* Evitar scroll de fondo cuando está abierto el menú */
+.no-scroll { overflow: hidden; height: 100vh; }
+
+/* ==========================================================================
+   FOOTER: Animaciones suaves por secciones (si tu HTML usa .footer-section)
+   ========================================================================== */
+
+.footer-section {
+  opacity: 0; transform: translateY(30px);
+  animation: fadeInUp .6s ease-out forwards;
+}
+.footer-section:nth-child(1) { animation-delay: .1s; }
+.footer-section:nth-child(2) { animation-delay: .2s; }
+.footer-section:nth-child(3) { animation-delay: .3s; }
+
+/* Reutiliza @keyframes fadeInUp de estilo.css si existe; fallback: */
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+/* ==========================================================================
+   BREAKPOINTS
+   ========================================================================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .header-container { padding: 0 1.5rem; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .menu-toggle { display: flex; }
+  .mobile-overlay, .mobile-nav { display: block; }
+
+  /* En móvil, el header suele ser más compacto; el JS ya ajusta transform */
+  .logo img { height: 35px; }
+}
+
+/* Mobile medium */
+@media (max-width: 640px) {
+  .mobile-nav { width: 100%; max-width: none; padding-top: 80px; }
+}
+
+/* Mobile small */
+@media (max-width: 480px) {
+  .menu-toggle { width: 35px; height: 35px; }
+  .hamburger, .hamburger::before, .hamburger::after { width: 20px; }
+  .mobile-nav a { padding: .85rem 1.25rem; font-size: 1rem; }
+  .mobile-cta { margin: 1rem; }
+}
+
+/* ==========================================================================
+   ESTADOS AL HACER SCROLL (coherente con header-footer.js / scroll-animations)
+   ========================================================================== */
+
+.header-scrolled {
+  height: 60px;
+  backdrop-filter: blur(20px);
+  background: rgba(0, 78, 137, 0.98);
+}
+.header-scrolled .logo img { height: 35px; }
+
+/* FIX: Ocultar navegación desktop y CTA cuando el menú móvil está activo (<=768px) */
+@media (max-width: 768px) {
+  header .main-nav,
+  header .cta-button {
+    display: none !important;
+  }
+  /* Asegurar que los elementos creados por JS estén habilitados */
+  .mobile-nav,
+  .mobile-overlay {
+    display: block !important;
+  }
+}
+
+/* Header del panel móvil + botón de cierre */
+.mobile-nav-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 64px;
+  padding: 0 1rem;
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  z-index: 1;
+}
+
+.mobile-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+.mobile-close:hover {
+  background: rgba(255,255,255,0.18);
+  transform: rotate(90deg) scale(1.05);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.mobile-close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.4), 0 0 0 6px rgba(28,181,178,.6);
+}
+
+@media (max-width: 480px) {
+  .mobile-nav-header { height: 56px; }
+  .mobile-close { width: 36px; height: 36px; }
+}
