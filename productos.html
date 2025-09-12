@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="es-PE">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
   <title>Productos | FULL VIDA</title>
-  <meta name="description" content="Presentaciones de agua purificada FULL VIDA para hogar y empresa: bidones 20L, botellas 7L, packs 2.5L, 1L, 625 ml, 500 ml y 355 ml. Entrega programada y atención por WhatsApp." />
+  <meta name="description"
+    content="Presentaciones de agua purificada FULL VIDA para hogar y empresa: bidones 20L, botellas 7L, packs 2.5L, 1L, 625 ml, 500 ml y 355 ml. Entrega programada y atención por WhatsApp." />
   <link rel="canonical" href="https://www.fullvida.com/productos.html" />
 
   <!-- OG/Twitter básicos -->
   <meta property="og:site_name" content="FULL VIDA" />
   <meta property="og:title" content="Productos | FULL VIDA" />
-  <meta property="og:description" content="Elige tu presentación de agua purificada y solicita tu cotización por WhatsApp." />
+  <meta property="og:description"
+    content="Elige tu presentación de agua purificada y solicita tu cotización por WhatsApp." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.fullvida.com/productos.html" />
   <meta property="og:image" content="https://www.fullvida.com/media/images/productos/og-productos.jpg" />
@@ -34,34 +37,44 @@
   <!-- Estilos mínimos para la grilla de productos (usa tus variables existentes) -->
   <style>
     .products-intro {
-      max-width: 900px; margin: 0 auto; text-align: center; color: var(--color-texto-claro);
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      color: var(--color-texto-claro);
     }
+
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: var(--espaciado-lg);
       margin-top: var(--espaciado-lg);
     }
+
     .product-card {
       background: var(--gradiente-card);
       border: 1px solid var(--color-borde);
       border-radius: var(--radio-grande);
       box-shadow: var(--sombra-sutil);
       padding: var(--espaciado-md);
-      display: flex; flex-direction: column; height: 100%;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
       transition: var(--transicion-bounce);
     }
+
     .product-card:hover {
       transform: translateY(-6px);
       box-shadow: var(--sombra-hover);
-      border-color: rgba(28,181,178,.2);
+      border-color: rgba(28, 181, 178, .2);
     }
+
     .product-cover {
       border-radius: var(--radio-medio);
       overflow: hidden;
       box-shadow: var(--sombra-sutil);
       margin-bottom: var(--espaciado-sm);
     }
+
     .product-title {
       font-family: var(--fuente-titulo);
       font-size: 1.15rem;
@@ -69,30 +82,65 @@
       margin-bottom: .25rem;
       text-align: center;
     }
-    .product-usage { 
-      text-align: center; color: var(--color-texto-claro); font-size: .95rem; margin-bottom: .5rem;
+
+    .product-usage {
+      text-align: center;
+      color: var(--color-texto-claro);
+      font-size: .95rem;
+      margin-bottom: .5rem;
     }
+
     .product-meta {
-      list-style: none; padding: 0; margin: .25rem 0 var(--espaciado-sm) 0;
-      font-size: .95rem; color: var(--color-texto);
+      list-style: none;
+      padding: 0;
+      margin: .25rem 0 var(--espaciado-sm) 0;
+      font-size: .95rem;
+      color: var(--color-texto);
     }
-    .product-meta li { margin-bottom: .25rem; }
+
+    .product-meta li {
+      margin-bottom: .25rem;
+    }
+
     .product-actions {
-      margin-top: auto; display: grid; gap: .5rem;
+      margin-top: auto;
+      display: grid;
+      gap: .5rem;
     }
+
     .strip-soon {
-      text-align: center; padding: 1rem; border-radius: var(--radio-medio);
-      background: rgba(28,181,178,.08); border: 1px dashed var(--color-acento);
+      text-align: center;
+      padding: 1rem;
+      border-radius: var(--radio-medio);
+      background: rgba(28, 181, 178, .08);
+      border: 1px dashed var(--color-acento);
       color: var(--color-primario);
     }
-    .faq { max-width: 900px; margin: 0 auto; }
+
+    .faq {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
     .faq details {
-      background: var(--gradiente-card); border: 1px solid var(--color-borde);
-      border-radius: var(--radio-medio); padding: .75rem 1rem; margin-bottom: .75rem;
+      background: var(--gradiente-card);
+      border: 1px solid var(--color-borde);
+      border-radius: var(--radio-medio);
+      padding: .75rem 1rem;
+      margin-bottom: .75rem;
       box-shadow: var(--sombra-sutil);
     }
-    .faq summary { cursor: pointer; font-weight: 600; color: var(--color-primario); }
-    .faq p { margin-top: .5rem; color: var(--color-texto); }
+
+    .faq summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--color-primario);
+    }
+
+    .faq p {
+      margin-top: .5rem;
+      color: var(--color-texto);
+    }
   </style>
 
   <!-- JSON-LD simple como lista -->
@@ -148,19 +196,14 @@
 
   <main id="main-content" role="main">
     <!-- Migas -->
-    <nav aria-label="Breadcrumb" class="page-section" style="padding-top:1rem;">
-      <ol style="list-style:none;display:flex;gap:.5rem;flex-wrap:wrap;">
-        <li><a href="index.html">Inicio</a></li>
-        <li aria-hidden="true">›</li>
-        <li><span aria-current="page">Productos</span></li>
-      </ol>
-    </nav>
+  
 
     <!-- Intro -->
     <section class="page-section" aria-labelledby="productos-title">
       <h1 class="section-title" id="productos-title">Productos</h1>
       <p class="products-intro">
-        Presentaciones ideales para <strong>hogar, oficinas y empresas</strong>: desde bidones de 20&nbsp;L hasta packs personales.
+        Presentaciones ideales para <strong>hogar, oficinas y empresas</strong>: desde bidones de 20&nbsp;L hasta packs
+        personales.
         Atención por WhatsApp, <strong>entrega programada</strong> y soporte post-venta.
       </p>
 
@@ -178,7 +221,9 @@
             <li><strong>Retorno:</strong> con envase retornable</li>
           </ul>
           <div class="product-actions">
-            <a class="button button-primary" href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Bid%C3%B3n%2020L%20retornable%20FULL%20VIDA" target="_blank" rel="noopener">Solicitar cotización</a>
+            <a class="button button-primary"
+              href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Bid%C3%B3n%2020L%20retornable%20FULL%20VIDA"
+              target="_blank" rel="noopener">Solicitar cotización</a>
           </div>
         </article>
 
@@ -194,7 +239,9 @@
             <li><strong>Retorno:</strong> descartable</li>
           </ul>
           <div class="product-actions">
-            <a class="button button-primary" href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Bid%C3%B3n%2020L%20no%20retornable%20FULL%20VIDA" target="_blank" rel="noopener">Solicitar cotización</a>
+            <a class="button button-primary"
+              href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Bid%C3%B3n%2020L%20no%20retornable%20FULL%20VIDA"
+              target="_blank" rel="noopener">Solicitar cotización</a>
           </div>
         </article>
 
@@ -209,7 +256,9 @@
             <li><strong>Presentación:</strong> unidad</li>
           </ul>
           <div class="product-actions">
-            <a class="button button-primary" href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Botella%207L%20FULL%20VIDA" target="_blank" rel="noopener">Solicitar cotización</a>
+            <a class="button button-primary"
+              href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Botella%207L%20FULL%20VIDA"
+              target="_blank" rel="noopener">Solicitar cotización</a>
           </div>
         </article>
 
@@ -224,7 +273,9 @@
             <li><strong>Presentación:</strong> pack por 6</li>
           </ul>
           <div class="product-actions">
-            <a class="button button-primary" href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Pack%206%20x%202.5L%20FULL%20VIDA" target="_blank" rel="noopener">Solicitar cotización</a>
+            <a class="button button-primary"
+              href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Pack%206%20x%202.5L%20FULL%20VIDA"
+              target="_blank" rel="noopener">Solicitar cotización</a>
           </div>
         </article>
 
@@ -239,7 +290,9 @@
             <li><strong>Presentación:</strong> pack por 12</li>
           </ul>
           <div class="product-actions">
-            <a class="button button-primary" href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Pack%2012%20x%201L%20FULL%20VIDA" target="_blank" rel="noopener">Solicitar cotización</a>
+            <a class="button button-primary"
+              href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Pack%2012%20x%201L%20FULL%20VIDA"
+              target="_blank" rel="noopener">Solicitar cotización</a>
           </div>
         </article>
 
@@ -254,7 +307,9 @@
             <li><strong>Presentación:</strong> pack por 12</li>
           </ul>
           <div class="product-actions">
-            <a class="button button-primary" href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Pack%2012%20x%20625ml%20FULL%20VIDA" target="_blank" rel="noopener">Solicitar cotización</a>
+            <a class="button button-primary"
+              href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Pack%2012%20x%20625ml%20FULL%20VIDA"
+              target="_blank" rel="noopener">Solicitar cotización</a>
           </div>
         </article>
 
@@ -269,7 +324,9 @@
             <li><strong>Presentación:</strong> pack por 24</li>
           </ul>
           <div class="product-actions">
-            <a class="button button-primary" href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Pack%2024%20x%20500ml%20FULL%20VIDA" target="_blank" rel="noopener">Solicitar cotización</a>
+            <a class="button button-primary"
+              href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Pack%2024%20x%20500ml%20FULL%20VIDA"
+              target="_blank" rel="noopener">Solicitar cotización</a>
           </div>
         </article>
 
@@ -284,7 +341,9 @@
             <li><strong>Presentación:</strong> pack por 24</li>
           </ul>
           <div class="product-actions">
-            <a class="button button-primary" href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Pack%2024%20x%20355ml%20FULL%20VIDA" target="_blank" rel="noopener">Solicitar cotización</a>
+            <a class="button button-primary"
+              href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20cotizar%20Pack%2024%20x%20355ml%20FULL%20VIDA"
+              target="_blank" rel="noopener">Solicitar cotización</a>
           </div>
         </article>
 
@@ -299,7 +358,9 @@
             <li><strong>Modalidad:</strong> alquiler mensual</li>
           </ul>
           <div class="product-actions">
-            <a class="button button-primary" href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20informaci%C3%B3n%20de%20alquiler%20de%20dispensador%20fr%C3%ADo%2Fcalor%20FULL%20VIDA" target="_blank" rel="noopener">Solicitar información</a>
+            <a class="button button-primary"
+              href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20informaci%C3%B3n%20de%20alquiler%20de%20dispensador%20fr%C3%ADo%2Fcalor%20FULL%20VIDA"
+              target="_blank" rel="noopener">Solicitar información</a>
           </div>
         </article>
 
@@ -314,21 +375,12 @@
             <li><strong>Modalidad:</strong> venta</li>
           </ul>
           <div class="product-actions">
-            <a class="button button-primary" href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20precio%20de%20Porta-bid%C3%B3n%20con%20grifo%20FULL%20VIDA" target="_blank" rel="noopener">Solicitar precio</a>
+            <a class="button button-primary"
+              href="https://wa.me/51968323653?text=Hola%2C%20quisiera%20precio%20de%20Porta-bid%C3%B3n%20con%20grifo%20FULL%20VIDA"
+              target="_blank" rel="noopener">Solicitar precio</a>
           </div>
         </article>
       </div>
-
-      <!-- Nota logística -->
-      <article class="service-item" style="margin-top: var(--espaciado-lg);">
-        <div class="service-content" style="flex-direction: column;">
-          <h2 class="service-title" style="text-align:center;">Información logística</h2>
-          <p style="text-align:center; color: var(--color-texto-claro); max-width: 900px; margin: 0 auto;">
-            <strong>Delivery en Sullana y zonas aledañas</strong>. Pedidos empresariales con <strong>entrega programada</strong>.
-            <em>Depósito/retorno</em> aplicable en bidón retornable. Mínimos y tiempos se coordinan por WhatsApp según zona.
-          </p>
-        </div>
-      </article>
 
       <!-- Franja “más productos” -->
       <div class="strip-soon" style="margin-top: var(--espaciado-lg);">
@@ -336,32 +388,67 @@
       </div>
     </section>
 
+
+    <!-- Nota logística -->
+    <article class="service-item" style="margin-top: var(--espaciado-lg);">
+      <div class="service-content" style="flex-direction: column;">
+        <h2 class="service-title" style="text-align:center;">Información logística</h2>
+        <p style="text-align:center; color: var(--color-texto-claro); max-width: 900px; margin: 0 auto;">
+          <strong>Delivery en Sullana y zonas aledañas</strong>. Pedidos empresariales con <strong>entrega
+            programada</strong>.
+          <em>Depósito/retorno</em> aplicable en bidón retornable. Mínimos y tiempos se coordinan por WhatsApp según
+          zona.
+        </p>
+      </div>
+    </article>
+
     <!-- FAQ -->
-    <section class="page-section" aria-labelledby="faq-title">
+    <section class="page-section animate-in" id="faq" aria-labelledby="faq-title">
       <h2 class="section-title" id="faq-title">Preguntas frecuentes</h2>
-      <div class="faq">
-        <details>
+
+      <div class="faq-list">
+        <details class="faq-item">
           <summary>¿Hacen delivery en mi zona?</summary>
-          <p>Atendemos Sullana y distritos cercanos. Para otras zonas de Piura, coordinamos ruta y tiempos por WhatsApp.</p>
+          <div class="faq-a">
+            Sí, realizamos entregas en Sullana, Piura y zonas cercanas. Indícanos tu ubicación por WhatsApp
+            para confirmarte cobertura y horario de reparto.
+          </div>
         </details>
-        <details>
+
+        <details class="faq-item">
           <summary>¿Hay depósito/retorno por bidón?</summary>
-          <p>Sí, para bidón retornable aplican condiciones de retorno. Si prefieres, tenemos opción no retornable.</p>
+          <div class="faq-a">
+            Trabajamos con bidones retornables. El depósito se devuelve al entregar el envase en buen estado.
+            Te confirmamos el monto vigente por WhatsApp.
+          </div>
         </details>
-        <details>
+
+        <details class="faq-item">
           <summary>¿Qué métodos de pago aceptan?</summary>
-          <p>Efectivo, transferencia y/yape/plin (según disponibilidad). En empresas, podemos gestionar facturación.</p>
+          <div class="faq-a">
+            Efectivo, Yape/Plin y transferencia bancaria. Para empresas, también factura con crédito previo acuerdo.
+          </div>
         </details>
-        <details>
+
+        <details class="faq-item">
           <summary>¿Cuál es el pedido mínimo?</summary>
-          <p>Para hogar, por lo general 1 unidad/pack. Para empresas, se coordinan mínimos por volumen y frecuencia.</p>
+          <div class="faq-a">
+            Para domicilio, 1 unidad en la mayoría de zonas. Para empresas o rutas especiales, podemos
+            solicitar un mínimo. Consúltanos según tu ubicación y volumen.
+          </div>
         </details>
-        <details>
+
+        <details class="faq-item">
           <summary>¿Puedo agendar entregas recurrentes?</summary>
-          <p>Claro, programamos entregas semanales o quincenales según tu consumo. Escríbenos y lo dejamos configurado.</p>
+          <div class="faq-a">
+            ¡Claro! Podemos programar entregas semanales o mensuales para hogar u oficina.
+            Escríbenos y configuramos tu frecuencia.
+          </div>
         </details>
       </div>
     </section>
+
+
   </main>
 
   <!-- FOOTER -->
@@ -369,7 +456,8 @@
     <div class="footer-container">
       <div class="footer-block">
         <h4>FULL VIDA</h4>
-        <p>Empresa peruana con sede en Sullana, Piura, dedicada a la producción, envasado y distribución de agua de mesa purificada con los más altos estándares de calidad.</p>
+        <p>Empresa peruana con sede en Sullana, Piura, dedicada a la producción, envasado y distribución de agua de mesa
+          purificada con los más altos estándares de calidad.</p>
         <ul>
           <li><a href="terminos.html">Términos y Condiciones</a></li>
           <li><a href="privacidad.html">Política de Privacidad</a></li>
@@ -396,7 +484,8 @@
           <ul>
             <li><strong>Dirección:</strong> Calle 7 #737, Sullana, Piura, Perú</li>
             <li><strong>Teléfono:</strong> <a href="tel:+51073553856">+51 (073) 553856</a></li>
-            <li><strong>WhatsApp:</strong> <a href="https://wa.me/51968323653" target="_blank" rel="noopener">+51 968 323 653</a></li>
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/51968323653" target="_blank" rel="noopener">+51 968
+                323 653</a></li>
             <li><strong>Correo:</strong> <a href="mailto:fullvidaytu@gmail.com">fullvidaytu@gmail.com</a></li>
             <li><strong>Horario:</strong> Lun-Sáb 8:00-18:00, Dom 8:00-13:00</li>
           </ul>
@@ -404,13 +493,21 @@
         <h4>Síguenos</h4>
         <ul class="social-links">
           <li>
-            <a href="https://facebook.com/fullvidaperu" target="_blank" rel="noopener" aria-label="Síguenos en Facebook">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" role="img" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"/></svg>
+            <a href="https://facebook.com/fullvidaperu" target="_blank" rel="noopener"
+              aria-label="Síguenos en Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" role="img" viewBox="0 0 24 24">
+                <path
+                  d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z" />
+              </svg>
             </a>
           </li>
           <li>
-            <a href="https://instagram.com/fullvidaperu" target="_blank" rel="noopener" aria-label="Síguenos en Instagram">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" role="img" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.644-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm6.406-1.683c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"/></svg>
+            <a href="https://instagram.com/fullvidaperu" target="_blank" rel="noopener"
+              aria-label="Síguenos en Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" role="img" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.644-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm6.406-1.683c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z" />
+              </svg>
             </a>
           </li>
         </ul>
@@ -427,4 +524,5 @@
   <script src="whatsapp-widget.js"></script>
   <!-- Sin carousel.js en esta página -->
 </body>
+
 </html>
