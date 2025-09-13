@@ -834,3 +834,11 @@ footer::before {
   transition: var(--transicion-bounce);
 }
 
+/* Mostrar legales sin esperar al observer */
+body.legal-page .page-section,
+body.legal-page .section-title,
+body.legal-page .service-item,
+body.legal-page .footer-block {
+  opacity: 1 !important;
+  transform: none !important;
+}

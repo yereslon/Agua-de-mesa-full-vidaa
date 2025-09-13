@@ -6,28 +6,78 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
   <title>Procesos | FULL VIDA</title>
-  <meta name="description" content="Conoce la historia, misión y equipo de FULL VIDA, productores de agua de mesa purificada en Sullana, Piura." />
-  <link rel="canonical" href="https://www.fullvida.com/nosotros.html" />
+  <meta name="description" content="Conoce el proceso multietapa de purificación de FULL VIDA: captación, filtración, ósmosis inversa, desinfección UV/ozono, almacenamiento higiénico, envasado y control por lote." />
+  <link rel="canonical" href="https://www.fullvida.com/procesos.html" />
 
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- CSS (orden recomendado) -->
+  <!-- CSS del sitio -->
   <link rel="stylesheet" href="estilo.css" />
   <link rel="stylesheet" href="header-footer.css" />
 
-  <!-- Favicons (opcionalmente iguales que en index) -->
+  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="./media/favicon/favicon-32x32.png" />
   <meta name="theme-color" content="#004E89" />
+
+  <!-- Estilos mínimos locales para el diagrama/FAQ (usa tus variables) -->
+  <style>
+    .process-flow {
+      max-width: 1100px;
+      margin: 0 auto var(--espaciado-lg);
+      display: grid;
+      grid-template-columns: repeat(7,1fr);
+      gap: .75rem;
+      align-items: start;
+    }
+    .process-step {
+      text-align: center;
+      font-size: .9rem;
+    }
+    .process-step .dot {
+      width: 14px; height: 14px; border-radius: 999px;
+      margin: 0 auto .5rem;
+      background: var(--color-acento);
+      box-shadow: 0 0 0 4px rgba(28,181,178,.12);
+    }
+    .process-step span { display:block; color: var(--color-texto-claro); }
+    .process-flow::before{
+      content:""; grid-column:1/-1; order:-1; height:4px; border-radius:2px;
+      background: linear-gradient(90deg, var(--color-primario), var(--color-acento));
+      margin: .5rem 0 1.25rem;
+    }
+
+    /* FAQ sencillo y limpio */
+    .faq-list { max-width: 1000px; margin: 0 auto; display: grid; gap: 1rem; }
+    details.faq {
+      background: var(--color-gris-claro);
+      border: 1px solid var(--color-borde);
+      border-radius: var(--radio-medio);
+      padding: .75rem 1rem;
+      box-shadow: var(--sombra-sutil);
+      transition: var(--transicion-normal);
+    }
+    details.faq[open]{ box-shadow: var(--sombra-media); }
+    summary {
+      cursor: pointer; font-weight: 600; color: var(--color-primario);
+      list-style: none; outline: none;
+    }
+    summary::-webkit-details-marker { display:none; }
+    summary::after{
+      content: "▸"; float:right; transition: transform .2s ease;
+      color: var(--color-acento); font-weight: 700;
+    }
+    details[open] summary::after{ transform: rotate(90deg); }
+    details.faq p{ margin-top:.5rem; color: var(--color-texto); }
+  </style>
 </head>
 
 <body>
-  <!-- El script añade el skip-link si no existe, pero lo dejamos por accesibilidad -->
   <a href="#main-content" class="skip-link">Saltar al contenido</a>
 
-  <!-- HEADER (igual al de index) -->
+  <!-- HEADER -->
   <header role="banner">
     <div class="logo">
       <a href="index.html" aria-label="FULL VIDA - Inicio">
@@ -42,23 +92,206 @@
         <li><a href="productos.html">Productos</a></li>
         <li><a href="maquila.html">Servicio de Maquila</a></li>
         <li><a href="empresas.html">Abastecimiento a Empresas</a></li>
-        <li><a href="procesos.html">Procesos</a></li>
+        <li><a href="procesos.html" aria-current="page">Procesos</a></li>
       </ul>
     </nav>
 
     <a href="contacto.html" class="button cta-button">Cotizar Ahora</a>
   </header>
 
-  <!-- CONTENIDO DE LA PÁGINA -->
+  <!-- CONTENIDO -->
   <main id="main-content" role="main">
-    <section class="page-section" aria-labelledby="nosotros-title">
-      <h1 class="section-title" id="nosotros-title">Sobre FULL VIDA</h1>
-      <p>Tu contenido aquí…</p>
-      <!-- Usa tus mismas clases .service-item, .image-background, etc. -->
+    <!-- Hero + Diagrama simple -->
+    <section class="page-section" aria-labelledby="proc-title">
+      <h1 class="section-title" id="proc-title">Procesos de purificación</h1>
+      <p class="text-center" style="max-width:900px;margin:0 auto var(--espaciado-md); color:var(--color-texto-claro)">
+        Nuestro proceso <strong>multietapa</strong> asegura agua segura y de sabor constante: captación y pretratamiento &rarr; filtración &rarr; ósmosis inversa &rarr; desinfección (UV/ozono) &rarr; almacenamiento higiénico &rarr; envasado &rarr; control por lote.
+      </p>
+
+      <div class="process-flow">
+        <div class="process-step"><div class="dot"></div><span>Captación</span></div>
+        <div class="process-step"><div class="dot"></div><span>Filtración</span></div>
+        <div class="process-step"><div class="dot"></div><span>Ósmosis inversa</span></div>
+        <div class="process-step"><div class="dot"></div><span>Desinfección</span></div>
+        <div class="process-step"><div class="dot"></div><span>Almacenamiento</span></div>
+        <div class="process-step"><div class="dot"></div><span>Envasado</span></div>
+        <div class="process-step"><div class="dot"></div><span>Control por lote</span></div>
+      </div>
+    </section>
+
+    <!-- PASO 1 -->
+    <section class="page-section" aria-labelledby="p1-title">
+      <article class="service-item">
+        <h2 class="service-title" id="p1-title">1) Captación y pretratamiento</h2>
+        <div class="service-content">
+          <div class="service-image-column">
+            <div class="image-background">
+              <img src="./media/procesos/paso1-captacion.jpg" alt="Ingreso de agua y pretratamiento con carbón/filtro de malla" loading="lazy" width="640" height="400" />
+            </div>
+          </div>
+          <div class="service-info">
+            <p><strong>Qué hacemos:</strong> retiramos arena y partículas grandes; ajustamos pH si es necesario y eliminamos cloro para proteger membranas.</p>
+            <p><strong>Para qué sirve:</strong> mejora olor/sabor y prepara el agua para las etapas finas.</p>
+            <p><strong>Control:</strong> turbidez, pH y cloro libre (no detectable antes de RO).</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- PASO 2 -->
+    <section class="page-section" aria-labelledby="p2-title">
+      <article class="service-item">
+        <h2 class="service-title" id="p2-title">2) Filtración en serie</h2>
+        <div class="service-content">
+          <div class="service-info">
+            <p><strong>Qué hacemos:</strong> filtros multimedia y cartuchos (por ejemplo 20 → 5 → 1 µm).</p>
+            <p><strong>Para qué sirve:</strong> retira partículas finas que podrían colapsar equipos posteriores.</p>
+            <p><strong>Control:</strong> presión diferencial y programa de recambios.</p>
+          </div>
+          <div class="service-image-column">
+            <div class="image-background">
+              <img src="./media/procesos/paso2-filtracion.jpg" alt="Batería de filtros de cartucho en serie" loading="lazy" width="640" height="400" />
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- PASO 3 -->
+    <section class="page-section" aria-labelledby="p3-title">
+      <article class="service-item">
+        <h2 class="service-title" id="p3-title">3) Ósmosis inversa</h2>
+        <div class="service-content">
+          <div class="service-image-column">
+            <div class="image-background">
+              <img src="./media/procesos/paso3-osmosis.jpg" alt="Skid de ósmosis inversa con manómetros y conductímetro" loading="lazy" width="640" height="400" />
+            </div>
+          </div>
+          <div class="service-info">
+            <p><strong>Qué hacemos:</strong> forzamos el agua a través de membranas de ≈0.0001 µm.</p>
+            <p><strong>Para qué sirve:</strong> removemos sales (TDS), metales y microorganismos, logrando agua de gran pureza.</p>
+            <p><strong>Control:</strong> conductividad/TDS, presión y % de rechazo; limpiezas CIP programadas.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- PASO 4 -->
+    <section class="page-section" aria-labelledby="p4-title">
+      <article class="service-item">
+        <h2 class="service-title" id="p4-title">4) Desinfección final (UV / ozono)</h2>
+        <div class="service-content">
+          <div class="service-info">
+            <p><strong>Qué hacemos:</strong> aplicamos luz UV y/o ozono.</p>
+            <p><strong>Para qué sirve:</strong> inactivamos microorganismos sin afectar el sabor; el ozono aporta estabilidad sanitaria.</p>
+            <p><strong>Control:</strong> intensidad UV y ORP/nivel de ozono, con tiempos de contacto validados.</p>
+          </div>
+          <div class="service-image-column">
+            <div class="image-background">
+              <img src="./media/procesos/paso4-uv-ozono.jpg" alt="Cámara UV y generador de ozono para desinfección del agua" loading="lazy" width="640" height="400" />
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- PASO 5 -->
+    <section class="page-section" aria-labelledby="p5-title">
+      <article class="service-item">
+        <h2 class="service-title" id="p5-title">5) Almacenamiento higiénico</h2>
+        <div class="service-content">
+          <div class="service-image-column">
+            <div class="image-background">
+              <img src="./media/procesos/paso5-tanque.jpg" alt="Tanque sanitario grado alimentario con respiradero filtrado" loading="lazy" width="640" height="400" />
+            </div>
+          </div>
+          <div class="service-info">
+            <p><strong>Qué hacemos:</strong> conservamos el agua en tanques cerrados y con aire filtrado (0.2 µm).</p>
+            <p><strong>Para qué sirve:</strong> evita recontaminación antes del envasado.</p>
+            <p><strong>Control:</strong> POES de limpieza/desinfección de tanques, temperatura y recirculaciones con UV/ozono.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- PASO 6 -->
+    <section class="page-section" aria-labelledby="p6-title">
+      <article class="service-item">
+        <h2 class="service-title" id="p6-title">6) Envasado en sala limpia</h2>
+        <div class="service-content">
+          <div class="service-info">
+            <p><strong>Qué hacemos:</strong> lavamos y desinfectamos envases, llenamos y tapamos automáticamente. Codificamos fecha y lote.</p>
+            <p><strong>Para qué sirve:</strong> garantiza inocuidad y trazabilidad.</p>
+            <p><strong>Control:</strong> BPM/POES, integridad de sellos y codificado legible.</p>
+          </div>
+          <div class="service-image-column">
+            <div class="image-background">
+              <img src="./media/procesos/paso6-envasado.jpg" alt="Línea de envasado y tapado automático" loading="lazy" width="640" height="400" />
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- PASO 7 -->
+    <section class="page-section" aria-labelledby="p7-title">
+      <article class="service-item">
+        <h2 class="service-title" id="p7-title">7) Control por lote y verificación externa</h2>
+        <div class="service-content">
+          <div class="service-image-column">
+            <div class="image-background">
+              <img src="./media/procesos/paso7-laboratorio.jpg" alt="Muestreo y verificación microbiológica en laboratorio" loading="lazy" width="640" height="400" />
+            </div>
+          </div>
+          <div class="service-info">
+            <ul>
+              <li><strong>Físico–químicos:</strong> TDS/conductividad (baja y estable), pH cercano a neutro.</li>
+              <li><strong>Microbiológicos:</strong> recuento total y ausencia de coliformes/E. coli.</li>
+              <li><strong>Frecuencia:</strong> TDS y pH por lote/turno; microbiología semanal o por lote; verificaciones externas periódicas.</li>
+              <li><strong>Trazabilidad:</strong> cada envase lleva código de lote, fecha y hora.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- CTA a Calidad / Productos -->
+    <section class="page-section text-center" aria-labelledby="cta-proc">
+      <h2 class="section-title" id="cta-proc">Certificados y presentaciones</h2>
+      <p style="max-width:800px;margin:0 auto var(--espaciado-md); color:var(--color-texto-claro)">
+        Revisa nuestros certificados y resultados en <strong>Calidad</strong>, y elige el formato ideal en <strong>Productos</strong>.
+      </p>
+      <div class="carousel-cta-container" style="display:flex;gap:1rem;justify-content:center;">
+        <a class="button button-primary" href="calidad.html">Ver Calidad</a>
+        <a class="button button-accent"  href="productos.html">Ver Productos</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="page-section" aria-labelledby="faq-title">
+      <h2 class="section-title" id="faq-title">Preguntas frecuentes</h2>
+      <div class="faq-list">
+        <details class="faq">
+          <summary>¿Qué es la ósmosis inversa?</summary>
+          <p>Es una tecnología que usa membranas muy finas para retener sales y microorganismos. El resultado es un agua de gran pureza y sabor consistente.</p>
+        </details>
+        <details class="faq">
+          <summary>¿Cada cuánto analizan el agua?</summary>
+          <p>Medimos TDS y pH por lote/turno; realizamos microbiología semanal o por lote y verificaciones externas de forma periódica según nuestro plan de control.</p>
+        </details>
+        <details class="faq">
+          <summary>¿Qué parámetros controlan?</summary>
+          <p>Principalmente TDS/conductividad, pH, ausencia de cloro antes de RO y recuentos microbiológicos en producto final. También registramos presiones y caudales de proceso.</p>
+        </details>
+        <details class="faq">
+          <summary>¿Cómo se asegura la higiene del envasado?</summary>
+          <p>Trabajamos con BPM y POES, sala limpia, lavado y desinfección de envases, equipos sanitarios y tapado automático. Cada lote queda codificado para su trazabilidad.</p>
+        </details>
+      </div>
     </section>
   </main>
 
-  <!-- FOOTER (igual al de index) -->
+  <!-- FOOTER -->
   <footer role="contentinfo">
     <div class="footer-container">
       <div class="footer-block">
@@ -79,7 +312,7 @@
           <li><a href="productos.html">Productos</a></li>
           <li><a href="maquila.html">Servicio de Maquila</a></li>
           <li><a href="empresas.html">Abastecimiento a Empresas</a></li>
-          <li><a href="procesos.html">Procesos</a></li>
+          <li><a href="procesos.html" aria-current="page">Procesos</a></li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
       </div>
@@ -89,28 +322,12 @@
         <address>
           <ul>
             <li><strong>Dirección:</strong> Calle 7 #737, Sullana, Piura, Perú</li>
-            <li><strong>Teléfono:</strong> <a href="tel:+51(073) 553856">+51 (073) 553856</a></li>
+            <li><strong>Teléfono:</strong> <a href="tel:+51073553856">+51 (073) 553856</a></li>
             <li><strong>WhatsApp:</strong> <a href="https://wa.me/51968323653">+51 968 323 653</a></li>
             <li><strong>Correo:</strong> <a href="mailto:fullvidaytu@gmail.com">fullvidaytu@gmail.com</a></li>
             <li><strong>Horario:</strong> Lun-Sáb 8:00-18:00, Dom 8:00-13:00</li>
           </ul>
         </address>
-        <h4>Síguenos</h4>
-        <ul class="social-links">
-          <li>
-            <a href="https://facebook.com/fullvidaperu" target="_blank" rel="noopener" aria-label="Síguenos en Facebook">
-              <!-- tu SVG -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"/></svg>
-            </a>
-          </li>
-          <li>
-            <a href="https://instagram.com/fullvidaperu" target="_blank" rel="noopener" aria-label="Síguenos en Instagram">
-              <!-- tu SVG -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.644-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm6.406-1.683c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"/></svg>
-            </a>
-          </li>
-          <!-- TikTok, etc. -->
-        </ul>
       </div>
     </div>
     <div class="copyright">
@@ -118,10 +335,9 @@
     </div>
   </footer>
 
-  <!-- JS (orden) -->
+  <!-- JS -->
   <script src="header-footer.js"></script>
   <script src="scroll-animations.js"></script>
   <script src="whatsapp-widget.js"></script>
-  <!-- NO incluir carousel.js aquí a menos que tengas carrusel en esta página -->
 </body>
 </html>
