@@ -10,6 +10,7 @@
     const whatsappConfig = {
       phoneNumber: '51968323653', // Solo dígitos. Cambiar por el real si hace falta.
       companyName: 'AGUA DE MESA | FULL VIDA',
+      avatarUrl: './imagenesvarias/LogoFullvidaWhatsApp.jpg', // URL del avatar (relativa o absoluta). Si falla, usa fallback SVG.
       // Mensajes contextuales por página
       messages: {
         default: '¡Hola! Me interesa solicitar información sobre los bidones de agua purificada FULL VIDA.',
@@ -66,18 +67,19 @@
     };
     const i18nDay = (date, tz) =>
       date.toLocaleDateString('en-US', { weekday: 'long', timeZone: tz }).toLowerCase();
+    // Garantizar formato "HH:MM" con 2 dígitos (usamos en-GB para 24h con ceros)
     const hhmm = (date, tz) =>
-      date.toLocaleTimeString('en-US', { hour12: false, timeZone: tz }).slice(0, 5);
+      date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: tz });
 
     const isOpenNow = () => {
       if (!whatsappConfig.businessHours.enabled) return true;
       const now = new Date();
       const tz = whatsappConfig.businessHours.timezone;
       const day = i18nDay(now, tz);
-      const time = hhmm(now, tz);
+      const time = hhmm(now, tz); // e.g. "08:00"
       const today = whatsappConfig.businessHours.schedule[day];
       if (!today) return false;
-      // Comparación segura con HH:MM (formato 24h)
+      // Comparación segura lexicográfica porque usamos HH:MM con 2 dígitos
       return time >= today.start && time <= today.end;
     };
 
@@ -133,7 +135,8 @@
           background:#075E54; color:#fff; padding: 15px 20px; display:flex; align-items:center; gap:12px;
         }
         .whatsapp-avatar { width:40px; height:40px; border-radius:50%; overflow:hidden; border:2px solid rgba(255,255,255,.2); }
-        .whatsapp-avatar img { width:100%; height:100%; object-fit:cover; }
+        /* Evitar recorte del logo: usar contain */
+        .whatsapp-avatar img { width:100%; height:100%; object-fit:contain; }
         .whatsapp-info { flex:1; }
         .whatsapp-info h4 { margin:0; font-size:16px; font-weight:600; }
         .whatsapp-status { font-size:12px; opacity:.9; display:flex; align-items:center; gap:6px; }
@@ -177,7 +180,7 @@
     // -------------------------------------------------------------
     const createWhatsAppWidget = () => {
       const widgetHTML = `
-        <div id="whatsapp-widget" class="whatsapp-widget" aria-live="polite">
+        <div id="whatsapp-widget" class="whatsapp-widget" aria-live="polite" style="display:none;">
           <!-- Botón principal -->
           <button class="whatsapp-button" id="whatsapp-btn"
                   aria-label="Abrir chat de WhatsApp"
@@ -194,7 +197,7 @@
           <!-- Ventana de chat -->
           <div class="whatsapp-chat" id="whatsapp-chat" role="dialog" aria-modal="true" aria-labelledby="whatsapp-title" aria-hidden="true">
             <div class="whatsapp-chat-header">
-              <div class="whatsapp-avatar"><img src="./imagenesvarias/LogoFullvidaWhatsApp.JPG" alt="FULL VIDA" /></div>
+              <div class="whatsapp-avatar"><img src="" alt="FULL VIDA" /></div>
               <div class="whatsapp-info">
                 <h4 id="whatsapp-title">AGUA DE MESA | FULL VIDA</h4>
                 <span class="whatsapp-status" id="whatsapp-status">En línea</span>
@@ -244,22 +247,26 @@
       const badge = document.getElementById('whatsapp-badge');
       const statusEl = document.getElementById('whatsapp-status');
 
-      +      // Asegurar URL absoluta del logo y fallback si no carga
-        (function ensureAvatar() {
-          const avatarImg = widget.querySelector('.whatsapp-avatar img');
-          if (!avatarImg) return;
-          const relPath = './imagenesvarias/LogoFullvidaWhatsApp.JPG';
-          try {
-            avatarImg.src = new URL(relPath, document.baseURI).href;
-          } catch (e) {
-            avatarImg.src = window.location.origin + '/' + relPath.replace(/^\.?\//, '');
-          }
-          avatarImg.addEventListener('error', () => {
-            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><rect width="100%" height="100%" fill="#075E54"/><text x="50%" y="54%" font-size="48" fill="#fff" font-family="Arial, Helvetica, sans-serif" text-anchor="middle" alignment-baseline="middle">FV</text></svg>`;
-            avatarImg.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
-            avatarImg.style.objectFit = 'contain';
-          }, { once: true });
-        })();
+      // Asegurar URL absoluta del logo y fallback si no carga
+      (function ensureAvatar() {
+        const avatarImg = widget.querySelector('.whatsapp-avatar img');
+        if (!avatarImg) return;
+        const relPath = whatsappConfig.avatarUrl || '';
+        let resolvedUrl;
+        try {
+          resolvedUrl = new URL(relPath, document.baseURI).href;
+        } catch (e) {
+          resolvedUrl = window.location.origin + '/' + relPath.replace(/^\.?\//, '');
+        }
+        // Cargar preferentemente de forma eager (avatar visible)
+        avatarImg.setAttribute('loading', 'eager');
+        avatarImg.src = resolvedUrl;
+        avatarImg.addEventListener('error', () => {
+          const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><rect width="100%" height="100%" fill="#075E54"/><text x="50%" y="54%" font-size="48" fill="#fff" font-family="Arial, Helvetica, sans-serif" text-anchor="middle" alignment-baseline="middle">FV</text></svg>`;
+          avatarImg.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+          avatarImg.style.objectFit = 'contain';
+        }, { once: true });
+      })();
 
       const phone = sanitizePhone(whatsappConfig.phoneNumber);
       let selectedMessage = getContextualMessage();
@@ -267,7 +274,7 @@
 
       // Mostrar widget tras un breve delay
       setTimeout(() => {
-        widget.style.display = 'block';
+        if (widget) widget.style.display = 'block';
       }, whatsappConfig.showDelayMs);
 
       // Estado de horario
@@ -293,7 +300,7 @@
         chat.setAttribute('aria-hidden', String(!open));
 
         if (open) {
-          badge.style.display = 'none';
+          if (badge) badge.style.display = 'none';
           // Foco al primer control significativo
           const firstFocusable = chat.querySelector('button, [href], [tabindex]:not([tabindex="-1"])');
           if (firstFocusable) setTimeout(() => firstFocusable.focus(), 100);
@@ -378,8 +385,9 @@
         }, whatsappConfig.badgeDelayMs);
       }
 
-      // Recalcular estado cada minuto (por si cambia el horario)
-      setInterval(updateBusinessStatus, 60 * 1000);
+      // Recalcular estado cada minuto (por si cambia el horario) y limpiar al unload
+      const statusInterval = setInterval(updateBusinessStatus, 60 * 1000);
+      window.addEventListener('unload', () => clearInterval(statusInterval));
 
       function openWhatsApp(message) {
         const base = `https://wa.me/${phone}`;
@@ -390,7 +398,7 @@
 
         // Cerrar chat y ocultar badge
         setChatVisibility(false);
-        badge.style.display = 'none';
+        if (badge) badge.style.display = 'none';
 
         // (Opcional) Analytics
         if (typeof gtag !== 'undefined') {
