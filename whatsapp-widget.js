@@ -23,13 +23,13 @@
         enabled: true,
         timezone: 'America/Lima',
         schedule: {
-          monday:    { start: '08:00', end: '18:00' },
-          tuesday:   { start: '08:00', end: '18:00' },
+          monday: { start: '08:00', end: '18:00' },
+          tuesday: { start: '08:00', end: '18:00' },
           wednesday: { start: '08:00', end: '18:00' },
-          thursday:  { start: '08:00', end: '18:00' },
-          friday:    { start: '08:00', end: '18:00' },
-          saturday:  { start: '08:00', end: '18:00' },
-          sunday:    { start: '08:00', end: '13:00' }
+          thursday: { start: '08:00', end: '18:00' },
+          friday: { start: '08:00', end: '18:00' },
+          saturday: { start: '08:00', end: '18:00' },
+          sunday: { start: '08:00', end: '13:00' }
         }
       },
       // Timing UI
@@ -47,9 +47,9 @@
     const getContextualMessage = () => {
       const path = (window.location.pathname || '').toLowerCase();
       if (path.includes('productos')) return whatsappConfig.messages.productos;
-      if (path.includes('maquila'))   return whatsappConfig.messages.maquila;
-      if (path.includes('empresas'))  return whatsappConfig.messages.empresas;
-      if (path.includes('contacto'))  return whatsappConfig.messages.contacto;
+      if (path.includes('maquila')) return whatsappConfig.messages.maquila;
+      if (path.includes('empresas')) return whatsappConfig.messages.empresas;
+      if (path.includes('contacto')) return whatsappConfig.messages.contacto;
       return whatsappConfig.messages.default;
     };
     const createSafeExternalOpen = (url) => {
@@ -235,14 +235,31 @@
     // Lógica de funcionamiento
     // -------------------------------------------------------------
     const initializeWidget = () => {
-      const widget   = document.getElementById('whatsapp-widget');
-      const button   = document.getElementById('whatsapp-btn');
-      const chat     = document.getElementById('whatsapp-chat');
+      const widget = document.getElementById('whatsapp-widget');
+      const button = document.getElementById('whatsapp-btn');
+      const chat = document.getElementById('whatsapp-chat');
       const closeBtn = document.getElementById('whatsapp-close');
-      const sendBtn  = document.getElementById('whatsapp-send');
+      const sendBtn = document.getElementById('whatsapp-send');
       const actionBtns = document.querySelectorAll('.whatsapp-action');
-      const badge    = document.getElementById('whatsapp-badge');
+      const badge = document.getElementById('whatsapp-badge');
       const statusEl = document.getElementById('whatsapp-status');
+
+      +      // Asegurar URL absoluta del logo y fallback si no carga
+        (function ensureAvatar() {
+          const avatarImg = widget.querySelector('.whatsapp-avatar img');
+          if (!avatarImg) return;
+          const relPath = './imagenesvarias/LogoFullvidaWhatsApp.JPG';
+          try {
+            avatarImg.src = new URL(relPath, document.baseURI).href;
+          } catch (e) {
+            avatarImg.src = window.location.origin + '/' + relPath.replace(/^\.?\//, '');
+          }
+          avatarImg.addEventListener('error', () => {
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><rect width="100%" height="100%" fill="#075E54"/><text x="50%" y="54%" font-size="48" fill="#fff" font-family="Arial, Helvetica, sans-serif" text-anchor="middle" alignment-baseline="middle">FV</text></svg>`;
+            avatarImg.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+            avatarImg.style.objectFit = 'contain';
+          }, { once: true });
+        })();
 
       const phone = sanitizePhone(whatsappConfig.phoneNumber);
       let selectedMessage = getContextualMessage();
@@ -322,7 +339,7 @@
       // Clicks fuera del chat para cerrar
       document.addEventListener('click', (e) => {
         if (chatOpen && !document.getElementById('whatsapp-chat').contains(e.target) &&
-            !document.getElementById('whatsapp-btn').contains(e.target)) {
+          !document.getElementById('whatsapp-btn').contains(e.target)) {
           setChatVisibility(false);
         }
       });
