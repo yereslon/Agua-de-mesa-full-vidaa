@@ -109,8 +109,8 @@ img { max-width: 100%; height: auto; display: block; }
    ========================================================================== */
 
 header {
-    background: rgba(0, 78, 137, 0.95);
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    background: rgba(3, 106, 185, 0.95);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(100px);
     color: var(--color-blanco);
     padding: 1rem 2rem;
     display: flex; justify-content: space-between; align-items: center;
@@ -122,19 +122,24 @@ header {
 .header-scrolled { padding: 0.5rem 2rem; background: rgba(0, 78, 137, 0.98); box-shadow: var(--sombra-media); }
 .header-scrolled .logo img { height: 40px; }
 
-header .logo { position: relative; overflow: hidden; }
+header .logo { position: relative; overflow: hidden; margin-right: 2rem; }
 header .logo img {
     height: 50px; transition: var(--transicion-normal);
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 header .logo img:hover { transform: scale(1.05); filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
 
-.main-nav ul { list-style: none; display: flex; gap: 2rem; }
+.main-nav ul { list-style: none; display: flex; gap: 2.5rem; }
 .main-nav a {
     color: var(--color-blanco); text-decoration: none; font-weight: 500;
     position: relative; padding: 0.5rem 0; transition: var(--transicion-rapida);
     font-size: 0.95rem;
 }
+
+.main-nav a.cotizar {
+    margin-left: 2rem; /* Aumenta el espacio a la izquierda del botón */
+}
+
 .main-nav a::before {
     content: ''; position: absolute; bottom: 0; left: 50%;
     width: 0; height: 2px;
@@ -168,6 +173,7 @@ header .logo img:hover { transform: scale(1.05); filter: drop-shadow(0 4px 8px r
     background: var(--gradiente-primario); color: var(--color-blanco);
     border-radius: var(--radio-xl); padding: 0.75rem 2rem;
     box-shadow: var(--sombra-media); border: 2px solid transparent; background-clip: padding-box;
+    margin-left: 1rem;
 }
 .cta-button:hover { background: linear-gradient(135deg, var(--color-acento) 0%, var(--color-detalle) 100%); border-color: rgba(255,255,255,0.2); }
 
@@ -184,48 +190,177 @@ header .logo img:hover { transform: scale(1.05); filter: drop-shadow(0 4px 8px r
    4. CARRUSEL HERO (sin flechas en tu HTML; estilos quedan por si vuelven)
    ========================================================================== */
 
+/* Mejoras: carousel-hero más fluido, accesible y optimizado */
 .carousel-hero {
-    position: relative; height: 70vh; min-height: 600px; width: 100%; margin: 0 auto; overflow: hidden;
-    border-radius: 0 0 var(--radio-grande) var(--radio-grande); box-shadow: var(--sombra-fuerte);
+  position: relative;
+  width: 100%;
+  height: clamp(700px, 60vh, 700px);
+  min-height: 360px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 0 0 var(--radio-grande) var(--radio-grande);
+  box-shadow: var(--sombra-fuerte);
+  isolation: isolate; /* evita efectos de mezcla con elementos fuera del hero */
+  background-color: #000; /* fallback mientras carga la imagen */
 }
-.carousel-track-container { height: 100%; position: relative; }
-.carousel-track { list-style: none; position: relative; height: 100%; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
 
+/* Contenedor de pista (puede contener controls/indicadores) */
+.carousel-track-container {
+  position: relative;
+  height: 100%;
+}
+
+/* Usamos slides apiladas con transiciones suaves sobre opacity/transform */
+.carousel-track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 100%;
+}
+
+/* Slide base: preparado para animaciones y rendimiento */
 .carousel-slide {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    opacity: 0; transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-    transform: scale(1.1);
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateZ(0) scale(1.03);
+  transition: opacity 600ms cubic-bezier(.22,.9,.35,1), transform 700ms cubic-bezier(.22,.9,.35,1);
+  will-change: opacity, transform;
+  pointer-events: none;
+  z-index: 0;
+  backface-visibility: hidden;
 }
-.carousel-slide.current-slide { opacity: 1; z-index: 1; transform: scale(1); }
 
+/* Slide activo */
+.carousel-slide.current-slide {
+  opacity: 1;
+  transform: translateZ(0) scale(1);
+  z-index: 2;
+  pointer-events: auto;
+}
+
+/* Imagen: cobertura completa, SIN máscara de color para que se vea la imagen completa */
 .carousel-image {
-    width: 100%; height: 100%; object-fit: cover;
-    filter: brightness(0.8) contrast(1.1) saturate(1.2); transition: var(--transicion-lenta);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 900ms cubic-bezier(.22,.9,.35,1);
+  transform-origin: center center;
+  will-change: transform;
+  filter: none; /* quitar oscurecimiento/colores */
 }
-.carousel-slide.current-slide .carousel-image { filter: brightness(0.9) contrast(1.1) saturate(1.2); }
 
+/* Cuando la slide es la actual la imagen se estabiliza */
+.carousel-slide.current-slide .carousel-image {
+  transform: scale(1);
+  filter: none;
+}
+
+/* Si quieres un ligero zoom en las imágenes no activas (opcional y sutil) */
+.carousel-slide:not(.current-slide) .carousel-image {
+  transform: scale(1.02);
+}
+
+/* Elimina la capa/mascara de color (antes aparecía cyan) */
 .carousel-slide::before {
-    content: ''; position: absolute; inset: 0; background: var(--gradiente-hero); z-index: 2;
+  display: none;
+  content: none;
 }
 
+/* Contenido encima del hero */
 .carousel-content {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    text-align: center; color: var(--color-blanco); z-index: 3; max-width: 800px; padding: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  max-width: min(1100px, 92%);
+  width: 100%;
+  padding: clamp(1rem, 2.2vw, 2.5rem);
+  text-align: center;
+  color: var(--color-blanco);
+  pointer-events: none; /* evita foco accidental en el hero; los botones pueden tener pointer-events:auto */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* Asegura lectura sin colorear la imagen */
+  text-shadow: 0 6px 18px rgba(0,0,0,0.6);
 }
-.carousel-content h1, .carousel-content h2 {
-    font-family: var(--fuente-titulo);
-    font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; margin-bottom: 1rem;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.5); opacity: 0; transform: translateY(30px);
-    animation: slideInUp 1s ease-out 0.3s forwards;
-}
-.carousel-content p {
-    font-size: clamp(1.1rem, 2vw, 1.3rem); margin-bottom: 2rem;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3); opacity: 0; transform: translateY(30px);
-    animation: slideInUp 1s ease-out 0.6s forwards;
-}
-.carousel-cta-container { opacity: 0; transform: translateY(30px); animation: slideInUp 1s ease-out 0.9s forwards; }
 
-@keyframes slideInUp { to { opacity: 1; transform: translateY(0); } }
+/* Títulos y texto con entrada sutil (prefiere-reduced-motion respeta al final) */
+.carousel-content h1,
+.carousel-content h2 {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(1.6rem, 4.2vw, 3.6rem);
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.05;
+  transform: translateY(8px);
+  opacity: 0;
+  animation: cd-slideIn 700ms cubic-bezier(.22,.9,.35,1) 200ms forwards;
+}
+
+/* Texto descriptivo */
+.carousel-content p {
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  margin: 0;
+  color: rgba(255,255,255,0.95);
+  transform: translateY(10px);
+  opacity: 0;
+  animation: cd-slideIn 700ms cubic-bezier(.22,.9,.35,1) 380ms forwards;
+}
+
+/* Contenedor de CTA dentro del contenido (botones deben ser interactivos) */
+.carousel-cta-container {
+  margin-top: .5rem;
+  display: flex;
+  gap: .75rem;
+  justify-content: center;
+  transform: translateY(12px);
+  opacity: 0;
+  animation: cd-slideIn 700ms cubic-bezier(.22,.9,.35,1) 560ms forwards;
+  pointer-events: auto; /* permitir interacción con botones */
+}
+
+/* Animación reutilizable */
+@keyframes cd-slideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Accesibilidad: respeta prefer-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-slide,
+  .carousel-image,
+  .carousel-content h1,
+  .carousel-content h2,
+  .carousel-content p,
+  .carousel-cta-container {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Ajustes responsivos específicos */
+@media (max-width: 1024px) {
+  .carousel-hero { height: clamp(360px, 55vh, 640px); }
+  .carousel-content h1, .carousel-content h2 { font-size: clamp(1.6rem, 6vw, 2.6rem); }
+}
+
+@media (max-width: 640px) {
+  .carousel-hero { height: clamp(320px, 50vh, 520px); border-radius: 0; }
+  .carousel-content { padding: 1rem; gap: .5rem; }
+  .carousel-content h1, .carousel-content h2 { font-size: clamp(1.25rem, 7vw, 1.9rem); text-shadow: 0 4px 18px rgba(0,0,0,0.6); }
+  .carousel-content p { font-size: 0.95rem; }
+}
+
+/* Quick performance hint: ensure images use loading="lazy" in markup and prefer modern formats (webp) */
 
 /* Indicadores */
 .carousel-nav {

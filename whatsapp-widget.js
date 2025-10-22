@@ -194,7 +194,7 @@
           <!-- Ventana de chat -->
           <div class="whatsapp-chat" id="whatsapp-chat" role="dialog" aria-modal="true" aria-labelledby="whatsapp-title" aria-hidden="true">
             <div class="whatsapp-chat-header">
-              <div class="whatsapp-avatar"><img src="./media/logo.png" alt="FULL VIDA" /></div>
+              <div class="whatsapp-avatar"><img src="./imagenesvarias/LogoFullvidaWhatsApp.JPG" alt="FULL VIDA" /></div>
               <div class="whatsapp-info">
                 <h4 id="whatsapp-title">AGUA DE MESA | FULL VIDA</h4>
                 <span class="whatsapp-status" id="whatsapp-status">En línea</span>
