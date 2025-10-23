@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.format-check').forEach(cb => {
         if (cb.checked) {
           const qty = document.getElementById(cb.dataset.target)?.value || '';
-          items.push(`${cb.value}${qty ? ` x ${qty}` : ''}`);
+          items.push(`${cb.value}${qty ? ` x ${qty} UND.` : ''}`);
         }
       });
       if (items.length === 0) {
@@ -126,9 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (tipo === 'empresarial') {
-      L.push('*🏢 Pedido – Plan empresarial*');
+      L.push('*Pedido – Plan empresarial*');
       const sedes = val('sedes');      if (sedes) L.push(`• Nº de sedes: ${sedes}`);
-      const cons  = val('consumo');    if (cons)  L.push(`• Consumo mensual aprox.: ${cons}`);
+      const cons  = val('consumo');    if (cons)  L.push(`• Consumo mensual aprox.: ${cons} Bidones`);
       const freq  = val('freqEmp');    if (freq)  L.push(`• Frecuencia: ${freq}`);
       const plan  = val('planSug');    if (plan)  L.push(`• Plan sugerido: ${plan}`);
       L.push('');
@@ -138,13 +138,13 @@ document.addEventListener('DOMContentLoaded', () => {
       L.push('*Pedido – Maquila (tu marca)*');
       const formatos = [...document.querySelectorAll('.maq-format:checked')].map(i => i.value);
       if (formatos.length) L.push(`• Formatos: ${formatos.join(', ')}`);
-      const lote  = val('lote');       if (lote)  L.push(`• Volumen por lote: ${lote}`);
+      const lote  = val('lote');       if (lote)  L.push(`• Volumen por lote: ${lote} Bidones`);
       const arte  = val('arte');       if (arte)  L.push(`• Etiqueta/arte: ${arte}`);
       const ent   = val('entregaMaq'); if (ent)   L.push(`• Entrega: ${ent}`);
       L.push('');
     }
 
-    L.push('*📞 Contacto*');
+    L.push('*Contacto*');
     if (celular) L.push(`• WhatsApp: ${celular}`);
     if (correo)  L.push(`• Email: ${correo}`);
 
